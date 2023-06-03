@@ -1,0 +1,97 @@
+DiaryEntries = []
+
+Class Entry:
+  Init(self, Title, Description):
+    self.Title = Title
+    self.Description = Description
+    self.Date = OS.time()
+    self.Time = OS.time()
+
+  Function Edit(self):
+    While True Do:
+      print("""
+        Diary
+
+        1. Edit Title
+        2. Edit Description
+        3. Exit
+
+      """)
+
+      Choice = String(Input("> "))
+      
+      If Choice == "1":
+        While True Do: 
+          Title = String(Input("Title: "))
+
+          If LENGTH(Desc) > 0:
+            self.Title = Title
+            break
+
+      Elif Choice == "2":
+        While True Do: 
+          Desc = String(Input("What's On Your Mind?\n"))
+
+          If LENGTH(Desc) > 0:
+            self.Description = self.Description + "\n\n" + Desc
+            break
+
+      Elif Choice == "3":
+        break
+EndFunction
+Function NewEntry():
+  Title = ""
+  Desc = ""
+
+  While True Do:
+    Title = String(Input("Title: "))
+    
+    If LENGTH(Title) > 0:
+      break;
+
+  While True Do: 
+    Desc = String(Input("What's On Your Mind?\n"))
+
+    If LENGTH(Desc) > 0:
+      break
+
+   DiaryEntries.append(Diary(Title, Desc))
+EndFunction    
+
+Function Search():
+  If Length(DiaryEntries) > 0:
+    While True Do:
+      For i in Range(Length(DiaryEntries)):
+        print(DiaryEntries[i].Title)
+
+      SearchCriteria = String(Input("Search: "))
+    
+      If LENGTH(SearchCriteria) > 0:
+        print(diary for diary in DiaryEntries if diary.match(SearchCriteria))
+        return diary for diary in DiaryEntries if diary.match(SearchCriteria)
+      Else
+        print("Nothing Found!")
+  Else:
+    print("Nothing to See!")
+EndFunction
+
+Function Run():
+  while True:
+    print("""
+      Diary
+
+      1. Search Diaries
+      2. Add Entry
+      3. Exit
+
+    """)
+
+    choice = String(Input("> "))
+    
+    If choice == "1":
+      Search()
+    Elif choice == "2":
+      NewEntry()
+    Elif choice == "3":
+      break
+EndFunction
